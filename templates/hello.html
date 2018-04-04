@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>hello</title>
+</head>
+<body>
+{% block page_content %}
+    <div class="page-header">
+        <h1>Hello, {% if form.name %}
+            {{ form.name.data }}
+        {% else %}Stranger{% endif %}!</h1></div>
+{% endblock %}
+<div class="card mx-auto col-2 ">
+    <form method="POST" class="form-group">
+        <div class="form-group has-error has-feedback">
+            {{ form.name.label }}
+            {{ form.csrf_token }}
+            </br>
+            <div class="text-center">{{ form.name }}</div>
+            <div class="container">
+
+
+                {% for error in form.name.errors %}
+                    <div class="col-md-12 form-text text-warning">
+                        <small style="color: red;"> {{ error }}</small>
+                    </div>
+                {% endfor %}
+             </div>
+            {{ form.submit }}
+        </div>
+
+
+    </form>
+</div>
+</body>
+</html>
